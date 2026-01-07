@@ -1,0 +1,406 @@
+/* ===============================
+   GOOGLE FONT
+================================ */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap");
+
+
+/* ===============================
+   ROOT VARIABLES
+================================ */
+:root {
+  --bg-main: #0a0d11;
+  --bg-soft: #10161d;
+  --accent: #00ffd5;
+  --accent-soft: rgba(0, 255, 213, 0.35);
+  --text-main: #eaeaea;
+  --text-soft: #b8b8b8;
+  --border-soft: rgba(255, 255, 255, 0.08);
+}
+
+
+/* ===============================
+   RESET
+================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: radial-gradient(circle at top, var(--bg-soft), var(--bg-main));
+  color: var(--text-main);
+  overflow-x: hidden;
+}
+
+
+/* ===============================
+   INTRO LOADER
+================================ */
+.intro-loader {
+  position: fixed;
+  inset: 0;
+  background: #050608;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+.intro-text {
+  font-size: clamp(2.6rem, 6vw, 4rem);
+  letter-spacing: 6px;
+  color: var(--accent);
+  opacity: 0;
+  animation: introFade 2.5s ease forwards;
+}
+
+@keyframes introFade {
+  from {
+    opacity: 0;
+    transform: scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.intro-loader.hide {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 1s ease;
+}
+
+
+/* ===============================
+   CINEMATIC OVERLAY
+================================ */
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 999;
+  background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+  opacity: 0.07;
+  mix-blend-mode: overlay;
+}
+
+.glow-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background:
+    radial-gradient(circle at 50% 15%, rgba(0,255,213,0.16), transparent 45%),
+    radial-gradient(circle at 80% 75%, rgba(0,255,213,0.08), transparent 55%);
+}
+
+
+/* ===============================
+   HERO
+================================ */
+.hero {
+  height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.9)),
+    url("img/hero-bg.jpg") center / cover no-repeat;
+  transform: translateY(var(--parallax-offset, 0));
+  will-change: transform;
+}
+
+.hero-title {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(3rem, 6vw, 4.6rem);
+  letter-spacing: 6px;
+  font-weight: 600;
+  text-shadow:
+    0 0 20px var(--accent-soft),
+    0 0 60px rgba(0,255,213,0.18);
+}
+
+
+/* ===============================
+   SCROLL INDICATOR
+================================ */
+.scroll-indicator {
+  position: absolute;
+  bottom: 36px;
+  z-index: 2;
+  font-size: 1.8rem;
+  color: var(--accent);
+  animation: bounce 1.8s infinite;
+}
+
+@keyframes bounce {
+  0%,100% { transform: translateY(0); }
+  50% { transform: translateY(12px); }
+}
+
+
+/* ===============================
+   PROFILE
+================================ */
+.profile {
+  min-height: 100vh;
+  padding: 0 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 50px;
+  position: relative;
+  z-index: 2;
+}
+
+.profile-left {
+  max-width: 520px;
+  opacity: 0;
+  transform: translateX(-80px);
+  transition: 1s ease;
+}
+
+.profile-left.slide-left {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.profile-left .name {
+  font-size: clamp(2.4rem, 4vw, 3.4rem);
+}
+
+.profile-left .interest {
+  margin-top: 14px;
+  color: var(--accent);
+  letter-spacing: 1.6px;
+}
+
+.profile-right {
+  opacity: 0;
+  transform: translateX(80px);
+  transition: 1s ease;
+}
+
+.profile-right.slide-right {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.profile-right img {
+  width: 100%;
+  max-width: 420px;
+  filter: drop-shadow(0 30px 50px rgba(0,0,0,0.75));
+}
+
+
+/* ===============================
+   SECTION
+================================ */
+section {
+  padding: 90px 10%;
+  position: relative;
+  z-index: 2;
+}
+
+.title {
+  font-size: 1.9rem;
+  margin-bottom: 28px;
+  padding-left: 18px;
+  position: relative;
+}
+
+.title::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  width: 4px;
+  height: 70%;
+  background: var(--accent);
+  border-radius: 10px;
+}
+
+
+/* ===============================
+   ABOUT
+================================ */
+.about p {
+  max-width: 760px;
+  color: var(--text-soft);
+}
+
+
+/* ===============================
+   SKILLS
+================================ */
+.skills-grid {
+  display: flex;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+
+.skill-icon {
+  width: 82px;
+  height: 82px;
+  border-radius: 18px;
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.02)
+  );
+  border: 1px solid var(--border-soft);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.35s ease;
+}
+
+.skill-icon:hover {
+  transform: translateY(-6px) scale(1.06);
+  border-color: var(--accent-soft);
+}
+
+.skill-icon img {
+  width: 42px;
+}
+
+
+/* ===============================
+   GRID & CARD
+================================ */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 28px;
+}
+
+.card {
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.07),
+    rgba(255,255,255,0.02)
+  );
+  border: 1px solid var(--border-soft);
+  padding: 26px;
+  border-radius: 18px;
+  transition: 0.35s ease;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  border-color: var(--accent-soft);
+}
+
+.card h3 {
+  color: var(--accent);
+  margin-bottom: 12px;
+}
+
+.card ul {
+  padding-left: 18px;
+  color: var(--text-soft);
+}
+
+
+/* ===============================
+   SOCIAL & WORK
+================================ */
+.social-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+
+.social-card {
+  text-decoration: none;
+  color: var(--text-main);
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.03)
+  );
+  border: 1px solid var(--border-soft);
+  padding: 26px;
+  border-radius: 20px;
+  text-align: center;
+  transition: 0.35s ease;
+}
+
+.social-card i {
+  font-size: 1.8rem;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.social-card:hover {
+  transform: translateY(-7px);
+  border-color: var(--accent);
+}
+
+
+/* ===============================
+   SCROLL REVEAL
+================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: 0.8s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ===============================
+   MOTION BLUR
+================================ */
+.motion-blur {
+  filter: blur(2px);
+  transition: filter 0.3s ease;
+}
+
+
+/* ===============================
+   FOOTER
+================================ */
+footer {
+  text-align: center;
+  padding: 30px;
+  font-size: 0.85rem;
+  color: #777;
+  border-top: 1px solid var(--border-soft);
+}
+
+
+/* ===============================
+   RESPONSIVE
+================================ */
+@media (max-width: 900px) {
+  .profile {
+    flex-direction: column-reverse;
+    text-align: center;
+  }
+
+  .profile-right img {
+    max-width: 300px;
+  }
+}
